@@ -1,68 +1,56 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.welcome')
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+@section('content')
+<div class="w-9/12 mx-auto mt-6">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
-    <!-- Styles -->
-    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
-</head>
-<body class="bg-gray-100 h-screen antialiased leading-none font-sans">
-<div class="flex flex-col">
-    @if(Route::has('login'))
-        <div class="absolute top-0 right-0 mt-4 mr-4 space-x-4 sm:mt-6 sm:mr-6 sm:space-x-6">
-            @auth
-                <a href="{{ url('/home') }}" class="no-underline hover:underline text-sm font-normal text-teal-800 uppercase">{{ __('Home') }}</a>
-            @else
-                <a href="{{ route('login') }}" class="no-underline hover:underline text-sm font-normal text-teal-800 uppercase">{{ __('Login') }}</a>
-                @if (Route::has('register'))
-                    <a href="{{ route('register') }}" class="no-underline hover:underline text-sm font-normal text-teal-800 uppercase">{{ __('Register') }}</a>
-                @endif
-            @endauth
-        </div>
-    @endif
-
-    <div class="min-h-screen flex items-center justify-center">
-        <div class="flex flex-col justify-around h-full">
-            <div>
-                <h1 class="mb-6 text-gray-600 text-center font-light tracking-wider text-4xl sm:mb-8 sm:text-6xl">
-                    {{ config('app.name', 'Laravel') }}
-                </h1>
-                <ul class="flex flex-col space-y-2 sm:flex-row sm:flex-wrap sm:space-x-8 sm:space-y-0">
-                    <li>
-                        <a href="https://laravel.com/docs" class="no-underline hover:underline text-sm font-normal text-teal-800 uppercase" title="Documentation">Documentation</a>
-                    </li>
-                    <li>
-                        <a href="https://laracasts.com" class="no-underline hover:underline text-sm font-normal text-teal-800 uppercase" title="Laracasts">Laracasts</a>
-                    </li>
-                    <li>
-                        <a href="https://laravel-news.com" class="no-underline hover:underline text-sm font-normal text-teal-800 uppercase" title="News">News</a>
-                    </li>
-                    <li>
-                        <a href="https://nova.laravel.com" class="no-underline hover:underline text-sm font-normal text-teal-800 uppercase" title="Nova">Nova</a>
-                    </li>
-                    <li>
-                        <a href="https://forge.laravel.com" class="no-underline hover:underline text-sm font-normal text-teal-800 uppercase" title="Forge">Forge</a>
-                    </li>
-                    <li>
-                        <a href="https://vapor.laravel.com" class="no-underline hover:underline text-sm font-normal text-teal-800 uppercase" title="Vapor">Vapor</a>
-                    </li>
-                    <li>
-                        <a href="https://github.com/laravel/laravel" class="no-underline hover:underline text-sm font-normal text-teal-800 uppercase" title="GitHub">GitHub</a>
-                    </li>
-                    <li>
-                        <a href="https://tailwindcss.com" class="no-underline hover:underline text-sm font-normal text-teal-800 uppercase" title="Tailwind Css">Tailwind CSS</a>
-                    </li>
-                </ul>
+    <div class="border rounded-md overflow-hidden mb-6">
+        <img class="lg:h-48 md:h-36 w-full rounded-md object-cover object-center" src="" alt="blog" />
+        <div class="p-6">
+            <h2 class="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">CATEGORY</h2>
+            <h1 class="text-4xl font-medium text-gray-900 mb-3">Test title</h1>
+            <p class="leading-relaxed mb-3 text-lg">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Recusandae dicta similique corrupti amet accusantium quo distinctio.</p>
+            <div class="flex items-center flex-wrap">
+                <a href="#" class="text-indigo-500 bg-gray-200 py-3 px-4 cursor-pointer rounded-lg hover:bg-gray-300 inline-flex items-center md:mb-2 lg:mb-0"
+                    >Read More
+                    <svg class="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14"></path>
+                    <path d="M12 5l7 7-7 7"></path>
+                    </svg>
+                </a>
             </div>
+        </div>
+        <div class="bg-gray-100 px-6 py-3 border-t">
+            <h3 class="text-gray-600 text-base">Posted on 12 June, 2021 by <a href="#" class="text-blue-500 hover:text-blue-800 hover:underline">Bootstrap</a></h3>
         </div>
     </div>
 </div>
-</body>
-</html>
+
+<!-- right column -->
+<div class="flex-col w-3/12 space-y-6 mt-6">
+    <div class="border rounded-md py-4">
+        <h1 class="text-2xl font-medium border-b pl-6 pb-4">Categories</h1>
+        <ul class="pt-4 px-6 flex flex-col space-y-2">
+            <li>
+                <a href="#" class="text-blue-500 hover:text-blue-800 hover:underline">Web Design</a>
+            </li>
+            <li>
+                <a href="#" class="text-blue-500 hover:text-blue-800 hover:underline">Html</a>
+            </li>
+            <li>
+                <a href="#" class="text-blue-500 hover:text-blue-800 hover:underline">Freebies</a>
+            </li>
+            <li>
+                <a href="#" class="text-blue-500 hover:text-blue-800 hover:underline">JavaScript</a>
+            </li>
+            <li>
+                <a href="#" class="text-blue-500 hover:text-blue-800 hover:underline block">Css</a>
+            </li>
+        </ul>
+    </div>
+    <div class="border rounded-md py-4">
+      <h1 class="text-2xl font-medium border-b pl-6 pb-4">Widget</h1>
+      <p class="pt-4 px-6">Lerem ispom dummy text.Lerem ispom dummy text.Lerem ispom dummy text.</p>
+    </div>
+</div>
+
+@endsection
