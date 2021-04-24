@@ -67,5 +67,7 @@
             @yield('content')
         @endauth
     </div>
+    @yield('modal')
+    @yield('scripts')
 </body>
 </html>
