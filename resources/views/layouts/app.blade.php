@@ -56,7 +56,9 @@
                     </a>
                 </li>
                 <li class="mt-4">
-                    <a class="text-gray-600 hover:underline cursor-pointer block border rounded-md px-3 py-2">Posts</a>
+                    <a href="{{ route('posts.index') }}" class="text-gray-600 hover:underline cursor-pointer block border rounded-md px-3 py-2">
+                        Posts
+                    </a>
                 </li>
                 </nav>
                 <div class="flex-1">

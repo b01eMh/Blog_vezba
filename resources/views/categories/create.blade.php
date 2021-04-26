@@ -24,7 +24,7 @@
                                 </p>
                             @enderror
                         </div>
-                        <button type="submit" class="py-5 px-3 bg-green-500 hover:bg-green-600 text-white rounded-lg">
+                        <button type="submit" class="py-5 px-3 bg-green-500 hover:bg-green-600 text-white rounded-lg focus:outline-none">
                             {{ isset($category) ? 'Update category' : 'Add category' }}
                         </button>
                     </div>
