@@ -24,6 +24,28 @@
                             </p>
                         @enderror
                     </div>
+                    {{-- Category --}}
+                    <div class="mb-4">
+                        <label for="category" class="leading-7 text-sm text-gray-600">Category</label>
+                        <select name="category_id" id="category" class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8">
+                            @foreach ($categories as $category)
+                                <option value="{{ $category->id }}"
+                                    @if (isset($post))
+                                        @if ($category->id === $post->category_id)
+                                            selected
+                                        @endif
+                                    @endif
+                                    >
+                                    {{ $category->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                        @error('category_id')
+                            <p class="text-red-500 text-sm italic mt-4">
+                                {{ $message }}
+                            </p>
+                        @enderror
+                    </div>
                     {{-- Post image --}}
                     @if (isset($post))
                         <div>

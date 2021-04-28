@@ -5,9 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Http\Requests\PostRequest;
+use App\Models\Category;
 
 class PostsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('checkCategories')->only(['create', 'store']);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -25,7 +30,7 @@ class PostsController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        return view('posts.create')->with('categories', Category::all());
     }
 
     /**
@@ -42,7 +47,8 @@ class PostsController extends Controller
         Post::create([
             'title' => $request->title,
             'post_image' => $image ?? '',
-            'body' => $request->body
+            'body' => $request->body,
+            'category_id' => $request->category_id
         ]);
         return redirect(route('posts.index'))->with('success', 'Post created!');
     }
@@ -66,7 +72,7 @@ class PostsController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('posts.create')->with('post', $post);
+        return view('posts.create')->with('post', $post)->with('categories', Category::all());
     }
 
     /**

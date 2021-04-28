@@ -15,6 +15,7 @@
                         <th>Image</th>
                         <th>Title</th>
                         <th>Content</th>
+                        <th>Category</th>
                         <th>&nbsp;</th>
                         <th>&nbsp;</th>
                     </tr>
@@ -27,6 +28,7 @@
                                 </td>
                                 <td>{{ $post->title }}</td>
                                 <td>{{ Str::limit($post->body, '20', ' ...') }}</td>
+                                <td>{{ $post->category->name }}</td>
                                 <td>
                                     <a href="{{ route('posts.edit', $post->id) }}" class="px-3 py-2 inline-block bg-indigo-400 hover:bg-indigo-500 hover:text-white rounded-md">Edit</a>
                                 </td>

@@ -13,6 +13,7 @@
                     <thead class="border-b text-left">
                         <tr>
                             <th>Name</th>
+                            <th>Posts count</th>
                             <th>&nbsp;</th>
                             <th>&nbsp;</th>
                         </tr>
@@ -21,6 +22,7 @@
                         @foreach ($categories as $category)
                             <tr class="h-10">
                                 <td>{{ $category->name }}</td>
+                                <td>{{ $category->posts->count() }}</td>
                                 <td>
                                     <a class="px-3 py-2 inline-block bg-indigo-400 hover:bg-indigo-500 hover:text-white rounded-md" href="{{ route('categories.edit', $category->id) }}">Edit</a>
                                 </td>

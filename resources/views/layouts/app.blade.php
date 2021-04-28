@@ -47,6 +47,9 @@
         @if (session('success'))
             <p class="mt-6 mx-12 bg-green-300 text-green-700 px-4 py-3 rounded-lg">{{ session('success') }}</p>
         @endif
+        @if (session('warning'))
+            <p class="mt-6 mx-12 bg-orange-300 text-orange-700 px-4 py-3 rounded-lg">{{ session('warning') }}</p>
+        @endif
         @auth
             <div class="flex w-10/12">
                 <nav class="list-none w-2/12 mx-auto mt-10 font-medium ml-12">
