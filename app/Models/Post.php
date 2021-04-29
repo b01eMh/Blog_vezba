@@ -17,4 +17,9 @@ class Post extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    public function showImage($image)
+    {
+        return '/storage/' . $image;
+    }
 }

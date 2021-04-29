@@ -24,7 +24,7 @@
                         @foreach ($posts as $post)
                             <tr class="h-10">
                                 <td>
-                                    <img src="/storage/{{ $post->post_image }}" width="120px" alt="post image">
+                                    <img src="{{ $post->showImage($post->post_image) }}" width="120px" alt="post image">
                                 </td>
                                 <td>{{ $post->title }}</td>
                                 <td>{{ Str::limit($post->body, '20', ' ...') }}</td>

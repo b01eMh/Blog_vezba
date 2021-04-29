@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\ProfilesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,12 +16,9 @@ use App\Http\Controllers\CategoriesController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
 Auth::routes();
 
+Route::get('/', [\App\Http\Controllers\HomeController::class, 'welcome'])->name('welcome');
 Route::get('/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::middleware('auth')->group(function(){
@@ -28,7 +26,8 @@ Route::middleware('auth')->group(function(){
     Route::resource('/categories', CategoriesController::class);
     // Posts
     Route::resource('/posts', PostsController::class);
+    // Profiles
+    Route::get('/profiles/{profile}', [ProfilesController::class, 'show'])->name('profiles.show');
+    Route::get('/profiles/{profile}/edit', [ProfilesController::class, 'edit'])->name('profiles.edit');
+    Route::post('/profiles/{profile}', [ProfilesController::class, 'update'])->name('profiles.update');
 });
-
-
-
