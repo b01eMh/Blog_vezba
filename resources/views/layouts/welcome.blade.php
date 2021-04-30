@@ -36,9 +36,10 @@
                 </nav>
             </div>
         </header>
-        <div class="min-h-screen container mx-auto flex justify-center space-x-4">
+        <div class="container mx-auto flex justify-center space-x-4">
             @yield('content')
         </div>
+        @yield('comments')
         {{-- footer --}}
         <footer class="bg-blue-900 h-32 flex justify-center items-center">
             <p class="text-gray-100 sm:text-left">© 2021 All Rights Reserved</p>
