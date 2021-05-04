@@ -21,10 +21,15 @@
                 </div>
             </div>
             <div class="bg-gray-100 px-6 py-3 border-t">
-                <h3 class="text-gray-600 text-base">Posted on {{ $post->created_at }} by <a href="#" class="text-blue-500 hover:text-blue-800 hover:underline">Bootstrap</a></h3>
+                <h3 class="text-gray-600 text-base">Posted on {{ $post->created_at }} by 
+                    <a href="#" class="text-blue-500 hover:text-blue-800 hover:underline">
+                        {{ $post->user->name }}
+                    </a>
+                </h3>
             </div>
         </div>
     @endforeach
+    {{ $posts->links() }}
 </div>
 
 <!-- right column -->

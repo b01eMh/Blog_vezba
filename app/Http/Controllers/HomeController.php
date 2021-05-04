@@ -20,7 +20,7 @@ class HomeController extends Controller
 
     public function welcome()
     {
-        return view('welcome')->with('posts', Post::all())->with('categories', Category::all());
+        return view('welcome')->with('posts', Post::latest()->paginate(5))->with('categories', Category::all());
     }
 
     /**

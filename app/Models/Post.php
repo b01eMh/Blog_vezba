@@ -27,4 +27,9 @@ class Post extends Model
     {
         return '/storage/' . $image;
     }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }

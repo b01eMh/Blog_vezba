@@ -37,24 +37,31 @@
 @section('comments')
 <div class="container mx-auto mt-8">
     <div class="w-9/12">
+        @if (session('success'))
+            <p class="my-2 bg-green-300 text-green-700 px-4 py-3 rounded-lg">
+                {{ session('success') }}
+            </p>
+        @endif
         <h2 class="text-gray-900 text-lg mb-4 font-medium title-font">Leave a comment:</h2>
-        <div class="relative mb-4">
-          <textarea id="message" name="message" class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6"></textarea>
-        </div>
-        <button class="text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">Submit</button>
+        <form action="{{ route('comments.store') }}" method="POST">
+            @csrf
+            <div class="relative mb-4">
+                <input type="hidden" name="post_id" value="{{ $post->id }}">
+                <textarea
+                name="body"
+                class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6"></textarea>
+            </div>
+            <button type="submit" class="text-white bg-indigo-500 mb-3 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">Submit</button>
+        </form>
         <!-- comments -->
-        <div class="mt-6">
-            <h1 class="text-xl font-medium mb-3">Commenter Name</h1>
-            <p>
-                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus
-            </p>
-        </div>
-        <div class="my-6">
-            <h1 class="text-xl font-medium mb-3">Commenter Name</h1>
-            <p>
-                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus
-            </p>
-        </div>
+        @if ($comments->count() > 0)
+            @foreach ($comments as $comment)
+                <div class="my-3">
+                    <h1 class="text-2xl font-medium mb-3">{{ $comment->author }} <span class="text-base text-gray-500">{{ $comment->created_at->diffForHumans() }}</span></h1>
+                    <p>{{ $comment->body }}</p>
+                </div>
+            @endforeach
+        @endif
     </div>
 </div>
 @endsection

@@ -68,6 +68,11 @@
                             Posts
                         </a>
                     </li>
+                    <li class="mt-4">
+                        <a href="{{ route('comments.index') }}" class="text-gray-600 hover:underline cursor-pointer block border rounded-md px-3 py-2">
+                            Comments
+                        </a>
+                    </li>
                 </nav>
                 <div class="flex-1">
                     @yield('content')

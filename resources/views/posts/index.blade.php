@@ -16,6 +16,7 @@
                         <th>Title</th>
                         <th>Content</th>
                         <th>Category</th>
+                        <th>Comments</th>
                         <th>&nbsp;</th>
                         <th>&nbsp;</th>
                     </tr>
@@ -26,9 +27,15 @@
                                 <td>
                                     <img src="{{ $post->showImage($post->post_image) }}" width="120px" alt="post image">
                                 </td>
-                                <td>{{ $post->title }}</td>
+                                <td>
+                                    <a href="{{ route('posts.show', $post->id) }}"
+                                        class="hover:text-blue-500 hover:underline">
+                                        {{ $post->title }}
+                                    </a>
+                                </td>
                                 <td>{{ Str::limit($post->body, '20', ' ...') }}</td>
                                 <td>{{ $post->category->name }}</td>
+                                <td>{{ $post->comments->count() }}</td>
                                 <td>
                                     <a href="{{ route('posts.edit', $post->id) }}" class="px-3 py-2 inline-block bg-indigo-400 hover:bg-indigo-500 hover:text-white rounded-md">Edit</a>
                                 </td>

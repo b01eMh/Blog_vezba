@@ -61,7 +61,7 @@ class PostsController extends Controller
      */
     public function show(Post $post)
     {
-        return view('posts.show')->with('post', $post)->with('categories', Category::all());
+        return view('posts.show')->with('post', $post)->with('categories', Category::all())->with('comments', $post->comments);
     }
 
     /**

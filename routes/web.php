@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\ProfilesController;
 
 /*
@@ -30,4 +31,8 @@ Route::middleware('auth')->group(function(){
     Route::get('/profiles/{profile}', [ProfilesController::class, 'show'])->name('profiles.show');
     Route::get('/profiles/{profile}/edit', [ProfilesController::class, 'edit'])->name('profiles.edit');
     Route::post('/profiles/{profile}', [ProfilesController::class, 'update'])->name('profiles.update');
+    // Comments
+    Route::get('/comments', [CommentsController::class, 'index'])->name('comments.index');
+    Route::post('/comments', [CommentsController::class, 'store'])->name('comments.store');
+    Route::delete('/comments/{comment}', [CommentsController::class, 'destroy'])->name('comments.destroy');
 });
