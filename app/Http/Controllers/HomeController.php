@@ -23,6 +23,12 @@ class HomeController extends Controller
         return view('welcome')->with('posts', Post::latest()->paginate(5))->with('categories', Category::all());
     }
 
+    public function categoryPosts($id)
+    {
+        $category = Category::findOrFail($id);
+        return view('posts.category_posts')->with('posts', $category->posts)->with('categories', Category::all());
+    }
+
     /**
      * Show the application dashboard.
      *

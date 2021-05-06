@@ -29,7 +29,6 @@
             </div>
         </div>
     @endforeach
-    {{ $posts->links() }}
 </div>
 
 <!-- right column -->

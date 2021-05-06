@@ -20,6 +20,7 @@ use App\Http\Controllers\ProfilesController;
 Auth::routes();
 
 Route::get('/', [\App\Http\Controllers\HomeController::class, 'welcome'])->name('welcome');
+Route::get('/category/{id}', [\App\Http\Controllers\HomeController::class, 'categoryPosts']);
 Route::get('/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::middleware('auth')->group(function(){

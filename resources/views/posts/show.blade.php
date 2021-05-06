@@ -4,7 +4,11 @@
 <div class="w-9/12 mx-auto mt-6">
     <div class="border-b">
         <h1 class="text-5xl font-medium text-gray-900 mb-3">{{ $post->title }}</h1>
-        <h3 class="text-xl my-6">By <a href="#" class="text-blue-500 text-xl hover:text-blue-800 hover:underline">{{ $post->user->name }}</a></h3>
+        <h3 class="text-xl my-6">By 
+            <span class="font-medium text-gray-700 text-2xl">
+                {{ $post->user->name }}
+            </span>
+        </h3>
     </div>
     <div class="border-b text-gray-900 mb-8 py-6">
         <h3 class="text-gray-600 italic font-semibold">Posted on {{ $post->created_at->diffForHumans() }} </h3>
@@ -22,7 +26,7 @@
         <ul class="pt-4 px-6 flex flex-col space-y-2">
             @foreach ($categories as $category)
                 <li>
-                    <a href="#" class="text-blue-500 hover:text-blue-800 hover:underline">{{ $category->name }}</a>
+                    <a href="/category/{{ $category->id }}" class="text-blue-500 hover:text-blue-800 hover:underline">{{ $category->name }}</a>
                 </li>
             @endforeach
         </ul>
