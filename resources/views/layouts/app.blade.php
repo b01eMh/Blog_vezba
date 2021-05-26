@@ -33,6 +33,8 @@
                     @else
                         <span>{{ Auth::user()->name }}</span>
 
+                        <a href="{{ route('home') }}" class="no-underline hover:underline">Dashboard</a>
+
                         <a href="{{ route('logout') }}"
                            class="no-underline hover:underline"
                            onclick="event.preventDefault();
@@ -50,38 +52,13 @@
         @if (session('warning'))
             <p class="mt-6 mx-12 bg-orange-300 text-orange-700 px-4 py-3 rounded-lg">{{ session('warning') }}</p>
         @endif
-        @auth
-            <div class="flex w-10/12">
-                <nav class="list-none w-2/12 mx-auto mt-10 font-medium ml-12">
-                    <li>
-                        <a href="{{ route('profiles.show', auth()->user()->profile->id) }}" class="text-gray-600 hover:underline cursor-pointer block border rounded-md px-3 py-2">
-                            Profile
-                        </a>
-                    </li>
-                    <li class="mt-4">
-                        <a href="{{ route('categories.index') }}" class="text-gray-600 hover:underline cursor-pointer block border rounded-md px-3 py-2">
-                            Categories
-                        </a>
-                    </li>
-                    <li class="mt-4">
-                        <a href="{{ route('posts.index') }}" class="text-gray-600 hover:underline cursor-pointer block border rounded-md px-3 py-2">
-                            Posts
-                        </a>
-                    </li>
-                    <li class="mt-4">
-                        <a href="{{ route('comments.index') }}" class="text-gray-600 hover:underline cursor-pointer block border rounded-md px-3 py-2">
-                            Comments
-                        </a>
-                    </li>
-                </nav>
-                <div class="flex-1">
-                    @yield('content')
-                </div>
-            </div>
-        @else
-            @yield('content')
-        @endauth
+
+        @yield('content')
     </div>
+    @yield('comments')
+
+    @yield('footer')
+
     @yield('modal')
     @yield('scripts')
 </body>

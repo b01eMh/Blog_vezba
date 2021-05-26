@@ -14,6 +14,9 @@ class CommentsController extends Controller
 
     public function store(Request $request)
     {
+        $this->validate($request,[
+            'body' => 'required'
+        ]);
         $user = auth()->user();
         $data = [
             'post_id' => $request->post_id,
@@ -27,6 +30,9 @@ class CommentsController extends Controller
 
     public function destroy(Comment $comment)
     {
+        // policy
+        $this->authorize('delete', $comment);
+        // delete
         $comment->delete();
         return redirect()->back()->with('success', 'Comment deleted!');
     }

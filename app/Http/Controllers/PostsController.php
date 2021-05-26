@@ -90,6 +90,9 @@ class PostsController extends Controller
             unlink('storage/' . $post->post_image);
             $inputs['post_image'] = $image;
         }
+        // policy
+        $this->authorize('update', $post);
+        // update
         $post->update($inputs);
         return redirect(route('posts.index'))->with('success', 'Post updated!');
     }
@@ -102,6 +105,9 @@ class PostsController extends Controller
      */
     public function destroy(Post $post)
     {
+        // policy
+        $this->authorize('delete', $post);
+        //delete
         unlink('storage/' . $post->post_image);
         $post->delete();
         return redirect(route('posts.index'))->with('success', 'Post deleted!');

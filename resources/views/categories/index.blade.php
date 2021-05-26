@@ -1,44 +1,49 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="w-full mt-10 sm:px-6">
-    <section class="flex flex-col break-words bg-white sm:border-1 sm:rounded-md sm:shadow-sm">
-        <header class="flex justify-between items-center font-semibold bg-gray-200 text-gray-700 py-5 px-6 sm:py-6 sm:px-8 sm:rounded-t-md">
-            Categories
-            <a href="{{ route('categories.create') }}" class="block bg-blue-400 hover:bg-blue-500 px-3 py-2 rounded-lg">Add New</a>
-        </header>
-        <div class="w-full p-6">
-            @if ($categories->count() > 0)
-                <table class="table-auto w-full">
-                    <thead class="border-b text-left">
-                        <tr>
-                            <th>Name</th>
-                            <th>Posts count</th>
-                            <th>&nbsp;</th>
-                            <th>&nbsp;</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($categories as $category)
-                            <tr class="h-10">
-                                <td>{{ $category->name }}</td>
-                                <td>{{ $category->posts->count() }}</td>
-                                <td>
-                                    <a class="px-3 py-2 inline-block bg-indigo-400 hover:bg-indigo-500 hover:text-white rounded-md" href="{{ route('categories.edit', $category->id) }}">Edit</a>
-                                </td>
-                                <td>
-                                    <button onclick="showModal({{ $category->id }})" class="px-3 py-2 inline-block bg-red-400 text-white hover:bg-red-500 rounded-md">Delete</button>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            @else
-            <h1 class="text-center text-gray-700 text-2xl font-semibold">No categories, it will be soon.</h1>
-            @endif
-            
+<div class="flex w-10/12">
+    <x-dashboard-side-links />
+    <div class="flex-1">
+        <div class="w-full mt-10 sm:px-6">
+            <section class="flex flex-col break-words bg-white sm:border-1 sm:rounded-md sm:shadow-sm">
+                <header class="flex justify-between items-center font-semibold bg-gray-200 text-gray-700 py-5 px-6 sm:py-6 sm:px-8 sm:rounded-t-md">
+                    Categories
+                    <a href="{{ route('categories.create') }}" class="block bg-blue-400 hover:bg-blue-500 px-3 py-2 rounded-lg">Add New</a>
+                </header>
+                <div class="w-full p-6">
+                    @if ($categories->count() > 0)
+                        <table class="table-auto w-full">
+                            <thead class="border-b text-left">
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Posts count</th>
+                                    <th>&nbsp;</th>
+                                    <th>&nbsp;</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($categories as $category)
+                                    <tr class="h-10">
+                                        <td>{{ $category->name }}</td>
+                                        <td>{{ $category->posts->count() }}</td>
+                                        <td>
+                                            <a class="px-3 py-2 inline-block bg-indigo-400 hover:bg-indigo-500 hover:text-white rounded-md" href="{{ route('categories.edit', $category->id) }}">Edit</a>
+                                        </td>
+                                        <td>
+                                            <button onclick="showModal({{ $category->id }})" class="px-3 py-2 inline-block bg-red-400 text-white hover:bg-red-500 rounded-md">Delete</button>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    @else
+                    <h1 class="text-center text-gray-700 text-2xl font-semibold">No categories, it will be soon.</h1>
+                    @endif
+                    
+                </div>
+            </section>
         </div>
-    </section>
+    </div>
 </div>
 @endsection
 @section('modal')
