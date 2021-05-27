@@ -63,6 +63,7 @@
                                     </p>
                                 @enderror
                             </div>
+
                             <div class="mt-4">
                                 <label id="gender" class="label">Gender</label>
                                 <select 
@@ -78,6 +79,14 @@
                                     </p>
                                 @enderror
                             </div>
+
+                            <div class="mt-4">
+                                <label class="inline-flex items-center text-sm text-gray-700" for="is_admin">
+                                    <input type="checkbox" name="is_admin" id="is_admin" class="form-checkbox" value="1" {{ $profile->is_admin ? 'checked' : '' }}>
+                                    <span class="ml-2">Admin</span>
+                                </label>
+                            </div>
+
                             <div class="mt-4">
                                 <label class="w-40 flex flex-col items-center px-4 py-4 bg-white rounded-lg shadow-lg tracking-wide uppercase border border-blue-200 cursor-pointer">
                                     <span class="text-base text-gray-700 font-bold">
@@ -91,6 +100,7 @@
                                     </p>
                                 @enderror
                             </div>
+
                             <div class="mt-4">
                                 <button type="submit" class="py-5 px-6 bg-green-500 hover:bg-green-600 text-white rounded-lg focus:outline-none">Save</button>
                             </div>

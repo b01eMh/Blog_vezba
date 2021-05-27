@@ -39,6 +39,12 @@
                             <label class="label text-cool-gray-600 font-medium text-lg">Gender:</label>
                             <h2 class="text-gray-800 font-semibold text-lg mt-2">{{ $profile->gender }}</h2>
                         </div>
+                        <div class="mt-4">
+                            <label class="label text-cool-gray-600 font-medium text-lg">Admin</label>
+                            <h2 class="text-gray-800 font-semibold text-lg mt-2">
+                                {{ $profile->is_admin ? 'Yes' : 'No' }}
+                            </h2>
+                        </div>
                     </div>
                 </div>
             </section>
