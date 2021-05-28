@@ -8,7 +8,9 @@
             <section class="flex flex-col break-words bg-white sm:border-1 sm:rounded-md sm:shadow-sm">
                 <header class="flex justify-between items-center font-semibold bg-gray-200 text-gray-700 py-5 px-6 sm:py-6 sm:px-8 sm:rounded-t-md">
                     Categories
-                    <a href="{{ route('categories.create') }}" class="block bg-blue-400 hover:bg-blue-500 px-3 py-2 rounded-lg">Add New</a>
+                    @if (auth()->user()->isAdmin())
+                        <a href="{{ route('categories.create') }}" class="block bg-blue-400 hover:bg-blue-500 px-3 py-2 rounded-lg">Add New</a>
+                    @endif
                 </header>
                 <div class="w-full p-6">
                     @if ($categories->count() > 0)
@@ -26,12 +28,14 @@
                                     <tr class="h-10">
                                         <td>{{ $category->name }}</td>
                                         <td>{{ $category->posts->count() }}</td>
-                                        <td>
-                                            <a class="px-3 py-2 inline-block bg-indigo-400 hover:bg-indigo-500 hover:text-white rounded-md" href="{{ route('categories.edit', $category->id) }}">Edit</a>
-                                        </td>
-                                        <td>
-                                            <button onclick="showModal({{ $category->id }})" class="px-3 py-2 inline-block bg-red-400 text-white hover:bg-red-500 rounded-md">Delete</button>
-                                        </td>
+                                        @if (auth()->user()->isAdmin())
+                                            <td>
+                                                <a class="px-3 py-2 inline-block bg-indigo-400 hover:bg-indigo-500 hover:text-white rounded-md" href="{{ route('categories.edit', $category->id) }}">Edit</a>
+                                            </td>
+                                            <td>
+                                                <button onclick="showModal({{ $category->id }})" class="px-3 py-2 inline-block bg-red-400 text-white hover:bg-red-500 rounded-md">Delete</button>
+                                            </td>
+                                        @endif
                                     </tr>
                                 @endforeach
                             </tbody>

@@ -25,7 +25,7 @@ Route::get('/home', [\App\Http\Controllers\HomeController::class, 'index'])->nam
 
 Route::middleware('auth')->group(function(){
     // Categories
-    Route::resource('/categories', CategoriesController::class);
+    Route::resource('/categories', CategoriesController::class)->except('store', 'update', 'destroy');
     // Posts
     Route::resource('/posts', PostsController::class);
     // Profiles
@@ -36,4 +36,11 @@ Route::middleware('auth')->group(function(){
     Route::get('/comments', [CommentsController::class, 'index'])->name('comments.index');
     Route::post('/comments', [CommentsController::class, 'store'])->name('comments.store');
     Route::delete('/comments/{comment}', [CommentsController::class, 'destroy'])->name('comments.destroy');
+});
+
+// routes for admin
+Route::middleware(['auth', 'isAdmin'])->group(function(){
+    Route::post('/categories', [CategoriesController::class, 'store'])->name('categories.store');
+    Route::patch('/categories/{category}', [CategoriesController::class, 'update'])->name('categories.update');
+    Route::delete('/categories/{category}', [CategoriesController::class, 'destroy'])->name('categories.destroy');
 });

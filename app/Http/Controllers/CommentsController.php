@@ -9,7 +9,11 @@ class CommentsController extends Controller
 {
     public function index()
     {
-        return view('comments.index')->with('comments', auth()->user()->comments);
+        if (auth()->user()->isAdmin()) {
+            return view('comments.index')->with('comments', Comment::orderBy('created_at', 'DESC')->get());
+        } else {
+            return view('comments.index')->with('comments', auth()->user()->comments);
+        }
     }
 
     public function store(Request $request)

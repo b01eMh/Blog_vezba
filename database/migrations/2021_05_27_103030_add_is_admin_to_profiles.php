@@ -14,7 +14,7 @@ class AddIsAdminToProfiles extends Migration
     public function up()
     {
         Schema::table('profiles', function (Blueprint $table) {
-            $table->boolean('is_admin');
+            $table->boolean('is_admin')->default('0');
         });
     }
 

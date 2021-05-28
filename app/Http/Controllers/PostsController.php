@@ -20,7 +20,11 @@ class PostsController extends Controller
      */
     public function index()
     {
-        return view('posts.index')->with('posts', auth()->user()->posts);
+        if (auth()->user()->isAdmin()) {
+            return view('posts.index')->with('posts', Post::orderBy('created_at', 'DESC')->get());
+        } else {
+            return view('posts.index')->with('posts', auth()->user()->posts);
+        }
     }
 
     /**

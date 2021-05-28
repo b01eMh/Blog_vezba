@@ -67,4 +67,12 @@ class User extends Authenticatable
         return $this->hasMany(Comment::class)->orderBy('created_at', 'DESC');
     }
 
+    public function isAdmin()
+    {
+        if(auth()->user()->profile->is_admin === 1) {
+            return true;
+        }
+        return false;
+    }
+
 }
