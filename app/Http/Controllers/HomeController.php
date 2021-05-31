@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use App\Models\Post;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
 {
@@ -20,7 +21,9 @@ class HomeController extends Controller
 
     public function welcome()
     {
-        return view('welcome')->with('posts', Post::latest()->paginate(5))->with('categories', Category::all());
+        return view('welcome')->with('posts', Post::latest()->paginate(5))
+            ->with('categories', Category::all())
+            ->with('posts_comments', Post::withCount('comments')->orderBy('comments_count', 'DESC')->limit(5)->get());
     }
 
     public function categoryPosts($id)
@@ -38,4 +41,5 @@ class HomeController extends Controller
     {
         return view('home');
     }
+
 }
