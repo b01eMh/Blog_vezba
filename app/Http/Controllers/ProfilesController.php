@@ -9,16 +9,25 @@ class ProfilesController extends Controller
 {
     public function show(Profile $profile)
     {
+        if (!auth()->user()->checkProfile($profile)) {
+            return redirect(route('home'))->with('warning', 'You do not have permission to access this profile.');
+        }
         return view('profiles.show')->with('profile', $profile);
     }
 
     public function edit(Request $request, Profile $profile)
     {
+        if (!auth()->user()->checkProfile($profile)) {
+            return redirect(route('home'))->with('warning', 'You do not have permission to access this profile.');
+        }
         return view('profiles.edit')->with('profile', $profile);
     }
 
     public function update(Request $request, Profile $profile)
     {
+        // policy
+        $this->authorize('update', $profile);
+        // validation
         $inputs = $request->validate([
             'username' => 'required|min:3',
             'city' => 'required',

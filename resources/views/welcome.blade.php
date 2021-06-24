@@ -47,13 +47,14 @@
             </ul>
         </div>
         @endif
-        <div class="border rounded-md py-4">
-          <h1 class="text-2xl font-medium border-b pl-6 pb-4">Top 5 posts<span class="block">with the most comments</span></h1>
-          @foreach ($posts_comments as $post)
-              <a href="{{ route('posts.show', $post->id) }}" class="pt-4 px-6 text-sm inline-block hover:underline"><span class="text-gray-600 font-semibold">{{ $post->title }}</span> by <span class="italic font-semibold">{{ $post->user->name }}</span>, <span class="font-bold">{{ $post->comments_count }}</span></a>
-          @endforeach
-          
-        </div>
+        @if ($posts_comments->count() > 0)
+            <div class="border rounded-md py-4">
+            <h1 class="text-2xl font-medium border-b pl-6 pb-4">Top 5 posts<span class="block">with the most comments</span></h1>
+            @foreach ($posts_comments as $post)
+                <a href="{{ route('posts.show', $post->id) }}" class="pt-4 px-6 text-sm inline-block hover:underline"><span class="text-gray-600 font-semibold">{{ $post->title }}</span> by <span class="italic font-semibold">{{ $post->user->name }}</span>, <span class="font-bold">{{ $post->comments_count }}</span></a>
+            @endforeach          
+            </div>
+        @endif
     </div>
 </div>
 @endsection

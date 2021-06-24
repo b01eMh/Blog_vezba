@@ -65,7 +65,10 @@ class PostsController extends Controller
      */
     public function show(Post $post)
     {
-        return view('posts.show')->with('post', $post)->with('categories', Category::all())->with('comments', $post->comments);
+        return view('posts.show')->with('post', $post)
+            ->with('categories', Category::all())
+            ->with('comments', $post->comments)
+            ->with('posts_comments', Post::withCount('comments')->orderBy('comments_count', 'DESC')->limit(5)->get());
     }
 
     /**
@@ -76,7 +79,11 @@ class PostsController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('posts.create')->with('post', $post)->with('categories', Category::all());
+        if (auth()->user()->isAdmin() || auth()->user()->id === $post->user_id) {
+            return view('posts.create')->with('post', $post)->with('categories', Category::all());
+        }
+        return redirect(route('posts.index'))->with('warning', 'You do not have permission to access this post.');
+        
     }
 
     /**
@@ -88,14 +95,17 @@ class PostsController extends Controller
      */
     public function update(PostRequest $request, Post $post)
     {
-        $inputs = $request->only(['title', 'body']);
-        if ($request->hasFile('post_image')) {
-            $image = $request->post_image->store('images', 'public');
-            unlink('storage/' . $post->post_image);
-            $inputs['post_image'] = $image;
-        }
         // policy
         $this->authorize('update', $post);
+        $inputs = $request->only(['title', 'category_id', 'body']);
+        if ($request->hasFile('post_image')) {
+            $image = $request->post_image->store('images', 'public');
+            if ($post->post_image !== "") {
+                unlink('storage/' . $post->post_image);
+            }
+            $inputs['post_image'] = $image;
+        }
+
         // update
         $post->update($inputs);
         return redirect(route('posts.index'))->with('success', 'Post updated!');

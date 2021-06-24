@@ -25,7 +25,11 @@ class Post extends Model
 
     public function showImage($image)
     {
-        return '/storage/' . $image;
+        if($image !== '') {
+            return '/storage/' . $image;
+        } else {
+            return 'https://via.placeholder.com/728x90';
+        }
     }
 
     public function comments()

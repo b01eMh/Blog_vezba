@@ -75,4 +75,9 @@ class User extends Authenticatable
         return false;
     }
 
+    public function checkProfile($profile)
+    {
+        return auth()->user()->profile->id === $profile->id;
+    }
+
 }

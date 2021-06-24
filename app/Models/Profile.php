@@ -23,4 +23,5 @@ class Profile extends Model
         $imagePath = ($this->profile_pic) ? '/storage/'.$this->profile_pic : 'https://picsum.photos/id/43/200/300';
         return $imagePath;
     }
+
 }
