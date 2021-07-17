@@ -27,8 +27,8 @@ class sendWelcomeEmail
      */
     public function handle(Registered $event)
     {
-        Mail::raw('Welcome to our blog. Greetings from the MH team', function($message){
-            $message->to('test@test.com')->subject('Thank you for registration.');
+        Mail::raw($event->user->name . ', Welcome to our blog. Greetings from the MH team', function($message) use ($event) {
+            $message->from('admin@example.com', 'Mh Blog')->to($event->user->email)->subject('Thank you for registration.');
         });
     }
 }
