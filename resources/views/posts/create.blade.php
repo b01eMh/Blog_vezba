@@ -10,7 +10,7 @@
                     {{ isset($post) ? 'Update a post' : 'Create a post' }}
                 </header>
                 <div class="w-full p-6">
-                    <p class="text-gray-700">
+                    <div class="text-gray-700">
                         <form action="{{ isset($post) ? route('posts.update', $post->id) : route('posts.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @if (isset($post))
@@ -82,7 +82,7 @@
                                 {{ isset($post) ? 'Update post' : 'Add post' }}
                             </button>
                         </form>
-                    </p>
+                    </div>
                 </div>
             </section>
         </div>

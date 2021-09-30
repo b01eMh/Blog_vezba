@@ -10,7 +10,7 @@
                     {{ isset($category) ? 'Edit a category' : 'Create a category' }}
                 </header>
                 <div class="w-full p-6">
-                    <p class="text-gray-700">
+                    <div class="text-gray-700">
                         <form action="{{ isset($category) ? route('categories.update', $category->id) : route('categories.store') }}" method="POST">
                             @csrf
                             @if (isset($category))
@@ -18,19 +18,19 @@
                             @endif
                             <div class="my-4">
                                 <label id="name" class="label">Name</label>
-                                <input class="w-full bg-white mt-2 rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 @error('name') border-red-500 @enderror"
+                                <input class="w-full bg-white mt-2 rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 @error('name') border-green-500 @enderror"
                                 name="name" id="name" type="text" value="{{ isset($category) ? $category->name : '' }}" autocomplete="off">
                                 @error('name')
-                                    <p class="text-red-500 text-sm italic mt-4">
+                                    <p class="text-green-500 text-sm italic mt-4">
                                         {{ $message }}
                                     </p>
                                 @enderror
                             </div>
                             <button type="submit" class="py-5 px-3 bg-green-500 hover:bg-green-600 text-white rounded-lg focus:outline-none">
                                 {{ isset($category) ? 'Update category' : 'Add category' }}
-                            </button>
-                        </form>
-                    </p>
+                            </button> 
+                        </form> 
+                    </div>
                 </div>
             </section>
         </div>

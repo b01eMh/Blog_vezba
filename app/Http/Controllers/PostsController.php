@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Requests\PostRequest;
-use App\Models\Category;
 
 class PostsController extends Controller
 {
@@ -83,7 +83,6 @@ class PostsController extends Controller
             return view('posts.create')->with('post', $post)->with('categories', Category::all());
         }
         return redirect(route('posts.index'))->with('warning', 'You do not have permission to access this post.');
-        
     }
 
     /**

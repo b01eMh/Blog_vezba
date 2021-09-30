@@ -18,13 +18,14 @@ use App\Http\Controllers\ProfilesController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Auth::routes();
 
 Route::get('/', [\App\Http\Controllers\HomeController::class, 'welcome'])->name('welcome');
 Route::get('/category/{id}', [\App\Http\Controllers\HomeController::class, 'categoryPosts']);
 Route::get('/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::middleware('auth')->group(function(){
+Route::middleware('auth')->group(function () {
     // Categories
     Route::resource('/categories', CategoriesController::class)->except('store', 'update', 'destroy');
     // Posts
@@ -40,7 +41,7 @@ Route::middleware('auth')->group(function(){
 });
 
 // routes for admin
-Route::middleware(['auth', 'isAdmin'])->group(function(){
+Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::post('/categories', [CategoriesController::class, 'store'])->name('categories.store');
     Route::patch('/categories/{category}', [CategoriesController::class, 'update'])->name('categories.update');
     Route::delete('/categories/{category}', [CategoriesController::class, 'destroy'])->name('categories.destroy');
